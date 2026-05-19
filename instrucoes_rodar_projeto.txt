@@ -1,0 +1,83 @@
+===============================================================================
+                    MANUAL DE OPERAÇÃO: BOT AUTOMATICAFI LIADOS
+===============================================================================
+Este guia contém todas as instruções necessárias para iniciar, rodar, pausar
+e gerenciar o seu robô de ofertas do Mercado Livre com integração ao Telegram.
+
+-------------------------------------------------------------------------------
+1. COMO INICIAR A INFRAESTRUTURA (DOCKER)
+-------------------------------------------------------------------------------
+Antes de rodar o robô, a "memória" (PostgreSQL) e o "maestro" (n8n) precisam
+estar ligados.
+
+Passos:
+  1. Abra o aplicativo 'Docker Desktop' no seu Mac.
+  2. Abra o Terminal na pasta do seu projeto:
+     cd /Users/antoniorabelo/Desktop/AutomaticAfiliados
+  3. Execute o comando para ligar os containers em segundo plano:
+     docker compose up -d
+
+Como verificar se está rodando?
+  - Acesse no seu navegador: http://localhost:5678 (Painel do n8n)
+  - O fluxo (Workflow) deve estar com o status "Active" (ou Published).
+
+-------------------------------------------------------------------------------
+2. COMO EXECUTAR O ROBÔ MANUALMENTE
+-------------------------------------------------------------------------------
+Se você quiser testar a busca imediatamente sem esperar o relógio do sistema:
+
+Passos:
+  1. No Terminal (dentro da pasta do projeto), ative o ambiente virtual:
+     source venv/bin/activate
+  2. Execute o script Python:
+     python3 scraper_ml.py
+
+Nota: O script está configurado em modo invisível (headless=True). Ele não vai
+abrir a janela do navegador na sua tela, mas você verá o resultado impresso
+no próprio terminal e as notificações chegando no Telegram se houver ofertas novas.
+
+-------------------------------------------------------------------------------
+3. COMO ATIVAR A AUTOMAÇÃO AGENDADA (CRON)
+-------------------------------------------------------------------------------
+Para fazer o robô trabalhar sozinho de hora em hora, 24 horas por dia:
+
+Passos:
+  1. No Terminal, abra a agenda do sistema:
+     env EDITOR=nano crontab -e
+  2. Cole a seguinte linha exata no editor (certifique-se de dar ENTER após colar
+     para deixar uma linha em branco no final do arquivo):
+
+0 * * * * cd /Users/antoniorabelo/Desktop/AutomaticAfiliados && /Users/antoniorabelo/Desktop/AutomaticAfiliados/venv/bin/python3 scraper_ml.py >> rotina_robo.log 2>&1
+
+  3. Salve e saia do editor:
+     - Pressione 'Ctrl + O' e depois aperte 'Enter' (para gravar).
+     - Pressione 'Ctrl + X' (página fechar).
+  4. O terminal deve exibir: crontab: installing new crontab.
+
+-------------------------------------------------------------------------------
+4. COMO DESATIVAR / PAUSAR O ROBÔ
+-------------------------------------------------------------------------------
+Se você quiser que o robô pare de rodar sozinho de hora em hora temporariamente:
+
+Passos:
+  1. No Terminal, abra o agendador:
+     env EDITOR=nano crontab -e
+  2. Use as setas do teclado para ir até o início da linha e adicione o símbolo '#'
+     (isso faz o Mac ignorar o comando):
+     # 0 * * * * cd /Users/antoniorabelo/Desktop/AutomaticAfiliados && ...
+  3. Salve e saia ('Ctrl + O', 'Enter', 'Ctrl + X').
+
+-------------------------------------------------------------------------------
+5. COMO DESLIGAR TUDO POR COMPLETO
+-------------------------------------------------------------------------------
+Quando você for desligar o Mac ou se quiser pausar o projeto por completo para
+não consumir memória RAM:
+
+Passos:
+  1. No Terminal, dentro da pasta do projeto, execute:
+     docker compose down
+
+Isso vai desligar o banco de dados e o n8n com segurança. Os seus dados salvos
+não serão perdidos, pois estão protegidos nos volumes do Docker. Da próxima vez
+que quiser usar, basta seguir o 'Passo 1' deste manual novamente.
+===============================================================================

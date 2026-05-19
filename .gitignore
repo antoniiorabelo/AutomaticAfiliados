@@ -1,0 +1,17 @@
+# Pastas e ambientes do Mac
+venv/
+sessao_ml/
+__pycache__/
+.DS_Store
+
+# Arquivos contendo senhas e credenciais (Blindagem)
+scraper_ml.py
+docker-compose.yml
+.env
+
+# Scripts de testes antigos que podem ter tokens
+teste_token.py
+gerar_token.py
+
+# Logs
+rotina_robo.log
