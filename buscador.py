@@ -1,7 +1,7 @@
 import requests
 
 # Seu Token Oficial
-TOKEN = "APP_USR-7553899260576138-050520-154c2e718fbb2ce6e8626cf643d2117f-787436450"
+TOKEN = "COLOQUE_SEU_TOKEN_AQUI"
 
 def buscar_produtos_ml(termo_busca):
     url = f"https://api.mercadolibre.com/sites/MLB/search?q={termo_busca}&limit=5"

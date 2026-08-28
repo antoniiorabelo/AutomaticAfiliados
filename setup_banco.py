@@ -7,7 +7,7 @@ def criar_tabela():
             host="localhost",
             database="ofertas_db",
             user="admin",
-            password="adminpassword",
+            password="COLOQUE_SUA_SENHA_DO_BANCO_AQUI",
             port="5433"
         )
         cursor = conexao.cursor()

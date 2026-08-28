@@ -8,7 +8,7 @@ def conectar_banco():
         host="localhost",
         database="ofertas_db",
         user="admin",
-        password="adminpassword",
+        password="COLOQUE_SUA_SENHA_DO_BANCO_AQUI",
         port="5433"
     )
 
@@ -75,7 +75,7 @@ def buscar_ofertas_playwright(termo_busca):
             except:
                 continue
 
-            ID_AFILIADO = "antoniohenri-20" 
+            ID_AFILIADO = "COLOQUE_SEU_ID_DE_AFILIADO_AQUI"
             link_afiliado = f"{link_original}?source=afiliado&id={ID_AFILIADO}"
             
             cursor.execute("SELECT id FROM historico_ofertas WHERE link = %s", (link_original,))
@@ -94,7 +94,7 @@ def buscar_ofertas_playwright(termo_busca):
                 print(f"🔥 NOVA OFERTA: {nome[:40]}...")
                 
                 # --- INÍCIO DO ENVIO PARA O N8N ---
-                webhook_url = "http://localhost:5678/webhook/e49395ed-00b4-412d-bef4-a6b7a4a00428"
+                webhook_url = "COLOQUE_A_URL_DO_SEU_WEBHOOK_AQUI"
                 
                 # Montamos um "pacote" com os dados do produto
                 dados_oferta = {

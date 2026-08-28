@@ -1,7 +1,7 @@
 import requests
 import json
 
-TOKEN = "APP_USR-7553899260576138-050520-154c2e718fbb2ce6e8626cf643d2117f-787436450"
+TOKEN = "COLOQUE_SEU_TOKEN_AQUI"
 
 def testar_acesso_api():
     # Essa rota devolve os dados básicos de quem é o dono do Token

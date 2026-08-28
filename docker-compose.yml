@@ -5,7 +5,7 @@ services:
     container_name: bot_ofertas_db
     environment:
       POSTGRES_USER: admin
-      POSTGRES_PASSWORD: adminpassword
+      POSTGRES_PASSWORD: COLOQUE_SUA_SENHA_DO_BANCO_AQUI
       POSTGRES_DB: ofertas_db
     ports:
       - "5433:5432"

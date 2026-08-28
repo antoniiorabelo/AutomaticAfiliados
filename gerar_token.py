@@ -1,14 +1,14 @@
 import requests
 
 # Seu código TG capturado!
-CODIGO_TG = "TG-69fa8f4487718e0001615518-787436450" 
+CODIGO_TG = "COLOQUE_SEU_CODIGO_TG_AQUI"
 
 url = "https://api.mercadolibre.com/oauth/token"
 
 payload = {
     "grant_type": "authorization_code",
-    "client_id": "7553899260576138",
-    "client_secret": "TlaSBXJgZnWI2d9akqYwRNIpfVz8zbtW",
+    "client_id": "COLOQUE_SEU_CLIENT_ID_AQUI",
+    "client_secret": "COLOQUE_SEU_CLIENT_SECRET_AQUI",
     "code": CODIGO_TG,
     "redirect_uri": "https://www.google.com"
 }
